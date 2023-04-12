@@ -1,0 +1,11 @@
+version: "1.0.0"
+
+param1: 0.4 # cohesion
+param2: 1.0 # separation
+param3: 0.0
+param4: 0.0
+param5: 0.0
+param6: 0.0
+param7: 0.5 # max velocity
+param8: 10.0 # separation visibility
+param9: 2.0 # safety distance

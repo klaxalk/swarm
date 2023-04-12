@@ -1,0 +1,44 @@
+<launch>
+
+  <!-- args corresponding to environment variables -->
+  <arg name="UAV_NAME" default="$(optenv UAV_NAME)" />
+
+  <arg name="custom_config" default="" />
+
+    <!-- other args -->
+  <arg name="standalone" default="true" />
+  <arg name="debug" default="false" />
+
+  <arg     if="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="standalone" />
+  <arg unless="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="load" />
+  <arg     if="$(eval arg('standalone') or arg('debug'))" name="nodelet_manager" value="" />
+  <arg unless="$(eval arg('standalone') or arg('debug'))" name="nodelet_manager" value="$(arg UAV_NAME)_nodelet_manager" />
+
+  <arg     if="$(arg debug)" name="launch_prefix" value="debug_roslaunch" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+  <group ns="$(arg UAV_NAME)">
+
+    <node name="swarm" pkg="nodelet" type="nodelet" args="$(arg nodelet) swarm/Swarm $(arg nodelet_manager)" output="screen" launch-prefix="$(arg launch_prefix)">
+
+      <rosparam file="$(find swarm)/config/swarm.yaml" />
+
+      <!-- Load a user param file -->
+      <rosparam if="$(eval not arg('custom_config') == '')" file="$(arg custom_config)" />
+
+      <param name="uav_name" value="$(arg UAV_NAME)" />
+
+      <!-- subscribers -->
+      <remap from="~tracker_cmd_in" to="control_manager/tracker_cmd" />
+      <remap from="~control_manager_diag_in" to="control_manager/diagnostics" />
+      <remap from="~params_in" to="/param_server/params" />
+
+      <!-- publishers -->
+      <remap from="~velocity_reference_out" to="control_manager/velocity_reference" />
+      <remap from="~swarming_out" to="~swarming" />
+
+    </node>
+
+  </group>
+
+</launch>

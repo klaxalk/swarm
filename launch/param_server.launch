@@ -1,0 +1,19 @@
+<launch>
+
+    <!-- other args -->
+  <arg name="standalone" default="true" />
+  <arg name="debug" default="false" />
+
+  <arg     if="$(arg debug)" name="launch_prefix" value="debug_roslaunch" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+  <node name="param_server" pkg="nodelet" type="nodelet" args="standalone swarm/ParamServer" output="screen" launch-prefix="$(arg launch_prefix)">
+
+    <rosparam file="$(find swarm)/config/param_server.yaml" />
+
+      <!-- publishers -->
+    <remap from="~params_out" to="~params" />
+
+  </node>
+
+</launch>

@@ -1,0 +1,11 @@
+<library path="lib/libSwarm">
+  <class name="swarm/Swarm" type="swarm::Swarm" base_class_type="nodelet::Nodelet">
+    <description>Swarm nodelet</description>
+  </class>
+</library>
+
+<library path="lib/libParamServer">
+  <class name="swarm/ParamServer" type="swarm::ParamServer" base_class_type="nodelet::Nodelet">
+    <description>Param server</description>
+  </class>
+</library>
