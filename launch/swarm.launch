@@ -7,7 +7,11 @@
 
     <!-- other args -->
   <arg name="standalone" default="true" />
+  <arg name="bond" default="$(optenv BOND true)" />
   <arg name="debug" default="false" />
+
+  <arg     if="$(arg bond)" name="bond_suffix" value="" />
+  <arg unless="$(arg bond)" name="bond_suffix" value="--no-bond" />
 
   <arg     if="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="standalone" />
   <arg unless="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="load" />
@@ -19,7 +23,7 @@
 
   <group ns="$(arg UAV_NAME)">
 
-    <node name="swarm" pkg="nodelet" type="nodelet" args="$(arg nodelet) swarm/Swarm $(arg nodelet_manager)" output="screen" launch-prefix="$(arg launch_prefix)">
+    <node name="swarm" pkg="nodelet" type="nodelet" args="$(arg nodelet) swarm/Swarm $(arg nodelet_manager) $(arg bond_suffix)" output="screen" launch-prefix="$(arg launch_prefix)">
 
       <rosparam file="$(find swarm)/config/swarm.yaml" />
 
