@@ -1,0 +1,87 @@
+[
+{
+	"border": "normal",
+		"floating": "auto_off",
+		"fullscreen_mode": 0,
+		"layout": "splitv",
+		"percent": 0.5,
+		"type": "con",
+		"nodes": [
+		{
+			"border": "pixel",
+			"current_border_width": 3,
+			"floating": "auto_off",
+			"geometry": {
+				"height": 686,
+				"width": 2530,
+				"x": 1932,
+				"y": 32
+			},
+			"name": "rviz.rviz* - RViz",
+			"percent": 0.63,
+			"swallows": [
+			{
+				"instance": "^rviz$"
+			}
+			],
+			"type": "con"
+		},
+		{
+			"border": "normal",
+			"floating": "auto_off",
+			"layout": "splith",
+			"percent": 0.37,
+			"type": "con",
+			"nodes": [
+			{
+				"border": "normal",
+				"floating": "auto_off",
+				"layout": "splitv",
+				"percent": 0.5,
+				"type": "con",
+				"nodes": [
+				{
+					"border": "pixel",
+					"current_border_width": 3,
+					"floating": "auto_off",
+					"geometry": {
+						"height": 460,
+						"width": 724,
+						"x": 0,
+						"y": 0
+					},
+					"name": "runVim session.yml",
+					"percent": 1,
+					"swallows": [
+					{
+						"instance": "^urxvt$"
+					}
+					],
+					"type": "con"
+				}
+				]
+			},
+			{
+				"border": "pixel",
+				"current_border_width": 3,
+				"floating": "auto_off",
+				"geometry": {
+					"height": 1030,
+					"width": 936,
+					"x": 969,
+					"y": 35
+				},
+				"name": "rqt_reconfigure__Param - rqt",
+				"percent": 0.5,
+				"swallows": [
+				{
+					"instance": "^rqt_reconfigure$"
+				}
+				],
+				"type": "con"
+			}
+			]
+		}
+	]
+}
+]

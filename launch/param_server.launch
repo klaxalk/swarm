@@ -11,6 +11,9 @@
 
     <rosparam file="$(find swarm)/config/param_server.yaml" />
 
+      <!-- Load a user param file -->
+    <rosparam if="$(eval not arg('custom_config') == '')" file="$(arg custom_config)" />
+
       <!-- publishers -->
     <remap from="~params_out" to="~params" />
 

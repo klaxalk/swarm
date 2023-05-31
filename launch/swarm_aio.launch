@@ -1,0 +1,36 @@
+<launch>
+
+  <!-- args corresponding to environment variables -->
+  <arg name="UAV_NAME" default="$(optenv UAV_NAME)" />
+
+  <arg name="custom_config" default="" />
+
+    <!-- other args -->
+  <arg name="standalone" default="true" />
+  <arg name="bond" default="$(optenv BOND true)" />
+  <arg name="debug" default="false" />
+
+  <arg     if="$(arg bond)" name="bond_suffix" value="" />
+  <arg unless="$(arg bond)" name="bond_suffix" value="--no-bond" />
+
+  <arg     if="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="standalone" />
+  <arg unless="$(eval arg('standalone') or arg('debug'))" name="nodelet" value="load" />
+  <arg     if="$(eval arg('standalone') or arg('debug'))" name="nodelet_manager" value="" />
+  <arg unless="$(eval arg('standalone') or arg('debug'))" name="nodelet_manager" value="$(arg UAV_NAME)_nodelet_manager" />
+
+  <arg     if="$(arg debug)" name="launch_prefix" value="debug_roslaunch" />
+  <arg unless="$(arg debug)" name="launch_prefix" value="" />
+
+  <node name="swarm" pkg="nodelet" type="nodelet" args="$(arg nodelet) swarm/SwarmAio $(arg nodelet_manager) $(arg bond_suffix)" output="screen" launch-prefix="$(arg launch_prefix)">
+
+    <rosparam file="$(find swarm)/config/swarm_aio.yaml" />
+
+    <!-- Load a user param file -->
+    <rosparam if="$(eval not arg('custom_config') == '')" file="$(arg custom_config)" />
+
+    <!-- subscribers -->
+    <remap from="~params_in" to="/param_server/params" />
+
+  </node>
+
+</launch>

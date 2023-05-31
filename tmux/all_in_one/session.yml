@@ -1,0 +1,29 @@
+name: simulation
+root: ./
+startup_window: goto
+windows:
+  - roscore:
+      layout: tiled
+      panes:
+        - roscore
+  - simulator:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch mrs_multirotor_simulator multirotor_simulator.launch custom_config:=./custom_configs/simulator.yaml
+  - swarm:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch swarm swarm_aio.launch
+  - param_server:
+      layout: tiled
+      panes:
+        - waitForRos; roslaunch swarm param_server.launch custom_config:=./custom_configs/param_server.yaml
+        - waitForRos; rosrun rqt_reconfigure rqt_reconfigure
+  - rviz:
+      layout: tiled
+      panes:
+        - waitForRos; rosrun rviz rviz -d ./rviz.rviz
+  - layout:
+      layout: tiled
+      panes:
+        - sleep 5.0; ~/.i3/layout_manager.sh ./layout.json

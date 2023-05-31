@@ -38,6 +38,7 @@ generate_dynamic_reconfigure_options(
 
 set(LIBRARIES
   Swarm
+  SwarmAio
   ParamServer
   )
 
@@ -49,6 +50,21 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ${dynamic_reconfigure_PACKAGE_PATH}/cmake/cfgbuild.cmake
+  )
+
+# SwarmAio
+
+add_library(SwarmAio
+  src/swarm_aio.cpp
+  )
+
+target_link_libraries(SwarmAio
+  ${catkin_LIBRARIES}
+  )
+
+add_dependencies(SwarmAio
+  ${${PROJECT_NAME}_EXPORTED_TARGETS}
+  ${catkin_EXPORTED_TARGETS}
   )
 
 # Swarm
