@@ -1,0 +1,104 @@
+simulation_rate: 100.0
+clock_rate: 100.0
+realtime_factor: 1.0
+
+iterate_without_input: true
+
+individual_takeoff_platform:
+  enabled: true
+
+uav_names: [
+  "uav1",
+  "uav2",
+  "uav3",
+  "uav4",
+  "uav5",
+  "uav6",
+  "uav7",
+  "uav8",
+  "uav9",
+  "uav10",
+]
+
+ground:
+  enabled: false
+
+uav1:
+  type: "f550"
+  spawn:
+    x: 0.0
+    y: 0.0
+    z: 1.0
+    heading: 0
+
+uav2:
+  type: "f550"
+  spawn:
+    x: 4.0
+    y: 1.0
+    z: 1.1
+    heading: 0
+
+uav3:
+  type: "f550"
+  spawn:
+    x: 8.0
+    y: 2.0
+    z: 1.2
+    heading: 0
+
+uav4:
+  type: "f550"
+  spawn:
+    x: 12.0
+    y: 3.0
+    z: 1.3
+    heading: 0
+
+uav5:
+  type: "f550"
+  spawn:
+    x: 16.0
+    y: 4.0
+    z: 1.4
+    heading: 0
+
+uav6:
+  type: "f550"
+  spawn:
+    x: 20.0
+    y: 5.0
+    z: 1.5
+    heading: 0
+
+uav7:
+  type: "f550"
+  spawn:
+    x: 24.0
+    y: 6.0
+    z: 1.6
+    heading: 0
+
+uav8:
+  type: "f550"
+  spawn:
+    x: 28.0
+    y: 7.0
+    z: 1.7
+    heading: 0
+
+uav9:
+  type: "f550"
+  spawn:
+    x: 32.0
+    y: 8.0
+    z: 1.8
+    heading: 0
+
+uav10:
+  type: "f550"
+  spawn:
+    x: 36.0
+    y: 9.0
+    z: 1.9
+    heading: 0

@@ -1,6 +1,12 @@
-name: simulation
+# do not modify these
 root: ./
-startup_window: goto
+name: simulation
+socket_name: mrs
+attach: false
+tmux_options: -f /etc/ctu-mrs/tmux.conf
+# you can modify these
+pre_window: export ROS_HOSTNAME=localhost
+startup_window: swarm
 windows:
   - roscore:
       layout: tiled
